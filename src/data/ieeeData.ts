@@ -26,12 +26,30 @@ export interface Chapter {
   id: string;
   name: string;
   code: string;
+  tagline?: string;
   description: string;
   vision: string;
   mission: string;
   objectives: string[];
   images: string[];
   leaders: ChapterLeader[];
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  photo: string;
+  description: string;
+}
+
+export interface FunctionalTeam {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  responsibilities: string[];
+  lead: TeamMember;
+  members: TeamMember[];
 }
 
 export interface MainLeader {
@@ -112,6 +130,26 @@ export const eventsData: Event[] = [
     longDescription: 'The AI/ML Project Exhibition is a stage for students to display their working software and hardware systems. Projects will be evaluated on technical sophistication, novel design, documentation quality, and presentation clarity. Top projects will be nominated for the regional IEEE Student Project Funding.',
     venue: 'College Central Lawn & Foyer',
     image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'ev-7',
+    title: 'Hands-on Workshop: Ganesha Idol Making',
+    date: 'September 11, 2026',
+    category: 'Workshop',
+    description: 'Eco-friendly Ganesha idol making workshop with expert Mr. Ajay Ghuge to celebrate sustainability and creativity.',
+    longDescription: 'Participate in the hands-on Eco-Friendly Ganesha Idol Making Workshop organized by PCET-NMIET and IEEE Student Branch. Guided by expert art teacher Mr. Ajay Ghuge, learn traditional clay sculpting techniques with zero environmental impact. Best Eco-Friendly Ganesh Idol Making Group will be awarded special prizes!',
+    venue: 'Wing-B Lawn, NMIET',
+    image: '/gallery/ganesh_idol_making_poster.jpg'
+  },
+  {
+    id: 'ev-8',
+    title: 'Hands-on Workshop: Prompt Engineering',
+    date: 'September 12, 2026',
+    category: 'Workshop',
+    description: 'Master prompt craft, LLM interaction paradigms, and generative AI reasoning with Dr. Naresh Kaushik.',
+    longDescription: 'Organized by IEEE Student Branch NMIET, this interactive hands-on workshop led by Dr. Naresh Kaushik (Assistant Professor, uGDX School of Technology) equips students with foundational and advanced prompt engineering strategies, few-shot prompting, chain-of-thought paradigms, and LLM optimization.',
+    venue: 'Online (Google Meet)',
+    image: '/gallery/prompt_engineering_poster.jpg'
   }
 ];
 
@@ -120,14 +158,14 @@ export const galleryAlbums: GalleryAlbum[] = [
     id: 'album-1',
     title: 'Inauguration of IEEE Student Branch',
     images: [
-      { url: 'public/gallery/innoguration/inno.jpg', caption: 'Opening ceremony and welcome address' },
+      { url: '/gallery/innoguration/inno.jpg', caption: 'Opening ceremony and welcome address' },
       { url: '/gallery/spm1.JPG', caption: 'Sarswati Pujan' },
       { url: '/gallery/rangoliie.jpg', caption: 'Rangoli of inaugural session' },
       { url: '/gallery/regamag1.jpg', caption: 'Student branch registration desk and orientation' },
       { url: '/gallery/prep2ab.jpg', caption: 'Letters and managing documents in the inaugural session' },
       { url: '/gallery/Techprepm.jpg', caption: 'Technical and Social media team performing in the inaugural session' },
       { url: '/gallery/particieee.jpg', caption: 'Students engaging in the inaugural session' },
-      { url: 'public/gallery/innoguration/student enjoy.jpg', caption: 'Students engaging in the inaugural session' },
+      { url: '/gallery/innoguration/student enjoy.jpg', caption: 'Students engaging in the inaugural session' },
       { url: '/gallery/ieeeteam.jpg', caption: 'IEEE Team in the inaugural session' }
     ]
   },
@@ -135,223 +173,329 @@ export const galleryAlbums: GalleryAlbum[] = [
     id: 'album-2',
     title: 'Quantum Computing Workshop',
     images: [
-      { url: 'public/gallery/Quantum Session/Quantums.jpg', caption: 'Expert speaker explaining quantum concepts' },
-      { url: 'public/gallery/Quantum Session/image.png', caption: 'Expert speaker explaining quantum concepts' },
-      { url: 'public/gallery/Quantum Session/interaction.jpg', caption: 'Quiz Competation instrctions.' },
-      { url: 'public/gallery/Quantum Session/Quant_Qui1.jpg', caption: 'Quiz Competation in the Quantum session' },
-      { url: 'public/gallery/Quantum Session/QuizS.jpg', caption: 'Students Response and pic' },
-      { url: 'public/gallery/Quantum Session/winnerbes.jpg', caption: 'Quiz winner in the Quantum Quiz' },
+      { url: '/gallery/Quantum Session/Quantums.jpg', caption: 'Expert speaker explaining quantum concepts' },
+      { url: '/gallery/Quantum Session/image.png', caption: 'Expert speaker explaining quantum concepts' },
+      { url: '/gallery/Quantum Session/interaction.jpg', caption: 'Quiz Competation instrctions.' },
+      { url: '/gallery/Quantum Session/Quant_Qui1.jpg', caption: 'Quiz Competation in the Quantum session' },
+      { url: '/gallery/Quantum Session/QuizS.jpg', caption: 'Students Response and pic' },
+      { url: '/gallery/Quantum Session/winnerbes.jpg', caption: 'Quiz winner in the Quantum Quiz' },
     ]
   },
   {
     id: 'album-3',
     title: 'Blood Donation Camp',
     images: [
-      { url: 'public/gallery/Blood Donation/discussion.jpg', caption: 'Team members and co-coordinators discussing event planning and coordination' },
-      { url: 'public/gallery/Blood Donation/bl inno.jpg', caption: 'Inauguration ceremony officially marking the commencement of the event' },
-      { url: 'public/gallery/Blood Donation/blood don regi desk.jpg', caption: 'Registration desk the donation camp setup' },
-      { url: 'public/gallery/Blood Donation/faculty visit to donor.jpg', caption: 'Visitors interacting and meeting with team and blood donors' },
-      { url: 'public/gallery/Blood Donation/Blood d mam Arr.jpg', caption: 'Management team & Co-ordinator supporting and coordinating the event successfully' },
-      { url: 'public/gallery/Blood Donation/nutrition desk.jpg', caption: 'Nutrition and body wellness consultation services desk' },
-      { url: 'public/gallery/Blood Donation/blcamp.jpg', caption: 'Students giving blood with care and enthusiasm' },
-      { url: 'public/gallery/Blood Donation/eye checkup.jpg', caption: 'Students receiving eye checkups at the medical desk' },
-      { url: 'public/gallery/ieeeteam.jpg', caption: 'Team photo after a successful donation drive' }
+      { url: '/gallery/Blood Donation/discussion.jpg', caption: 'Team members and co-coordinators discussing event planning and coordination' },
+      { url: '/gallery/Blood Donation/bl inno.jpg', caption: 'Inauguration ceremony officially marking the commencement of the event' },
+      { url: '/gallery/Blood Donation/blood don regi desk.jpg', caption: 'Registration desk the donation camp setup' },
+      { url: '/gallery/Blood Donation/faculty visit to donor.jpg', caption: 'Visitors interacting and meeting with team and blood donors' },
+      { url: '/gallery/Blood Donation/Blood d mam Arr.jpg', caption: 'Management team & Co-ordinator supporting and coordinating the event successfully' },
+      { url: '/gallery/Blood Donation/nutrition desk.jpg', caption: 'Nutrition and body wellness consultation services desk' },
+      { url: '/gallery/Blood Donation/blcamp.jpg', caption: 'Students giving blood with care and enthusiasm' },
+      { url: '/gallery/Blood Donation/eye checkup.jpg', caption: 'Students receiving eye checkups at the medical desk' },
+      { url: '/gallery/ieeeteam.jpg', caption: 'Team photo after a successful donation drive' }
+    ]
+  },
+  {
+    id: 'album-4',
+    title: 'Ganesha Idol Making Workshop',
+    images: [
+      { 
+        url: '/gallery/ganesh_idol_making_poster.jpg', 
+        caption: 'Hands-on Workshop on Divine Creations: Eco-Friendly Ganesha Idol Making Workshop with Expert Mr. Ajay Ghuge' 
+      }
+    ]
+  },
+  {
+    id: 'album-5',
+    title: 'Prompt Engineering Workshop',
+    images: [
+      { 
+        url: '/gallery/prompt_engineering_poster.jpg', 
+        caption: 'Hands-on Workshop on Prompt Engineering with Resource Person Dr. Naresh Kaushik' 
+      }
     ]
   }
 ];
 
 export const chaptersData: Chapter[] = [
   {
-    id: 'ch-cse',
-    name: 'Computer Science and Engineering',
-    code: 'CSE',
-    description: 'Founded in 1946, the IEEE Computer Society is a global community dedicated to advancing computer science and technology. It promotes innovation across computing theory, design, practice, and application through leading publications, international conferences, technical standards, educational initiatives, and professional development programs.',
-    vision: 'To build a community of innovative software engineers and researchers capable of addressing global computational challenges.',
-    mission: 'To advance the theory, practice, and application of computer and information processing science and technology while fostering technical excellence, innovation, and professional growth among its members.',
+    id: 'ch-cs',
+    name: 'Computer Society',
+    code: 'CS',
+    tagline: 'Innovate • Investigate • Impact',
+    description: 'Founded in 1946, the IEEE Computer Society is the premier community for computing professionals and students, advancing theory, software engineering, architecture, and technology innovations worldwide.',
+    vision: 'To build a vibrant community of innovative software engineers, competitive programmers, and researchers addressing real-world challenges.',
+    mission: 'To foster technical excellence, collaborative coding, open-source development, and professional growth across modern computer science disciplines.',
     objectives: [
-      'Conduct hands-on sessions on modern programming languages and frameworks.',
-      'Organize competitive coding competitions to boost algorithmic thinking.',
-      'Host system architecture seminars led by expert industrial developers.',
-      'Encourage open-source software contributions and collaborative research.'
+      'Conduct hands-on masterclasses on full-stack development and modern architectures.',
+      'Host competitive programming contests and coding hackathons.',
+      'Organize industry mentorship sessions with leading software developers.',
+      'Encourage open-source contributions and research publications.'
     ],
     images: [
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80'
+      '/chapters/cs_poster.png'
     ],
     leaders: [
       {
         name: 'Om Rathod',
-        role: 'Chapter Chair',
-        photo: '/teamcse/omrathod.jpeg',
-        description: 'Creating leading teams, shaping impactful initiatives, and turning vision into action.'
+        role: 'CS Chairperson',
+        photo: '/team/cs/om_rathod.png',
+        description: 'Leading teams, shaping impactful initiatives, and turning vision into action.'
+      },
+      {
+        name: 'Parikshit Bakal',
+        role: 'CS Vice-Chair',
+        photo: '/team/cs/parikshit_bakal.png',
+        description: 'Contributing through teamwork, technical leadership, and collaborative results.'
       },
       {
         name: 'Mayur Tayade',
-        role: 'Secretary',
-        photo: '/teamcse/Mayur Tayade.jpeg',
+        role: 'CS Secretary',
+        photo: '/team/cs/mayur_tayade.png',
         description: 'Passionate about turning ideas into organized, impactful initiatives.'
       },
       {
+        name: 'Pranav Swami',
+        role: 'CS Treasurer',
+        photo: '/team/cs/pranav_swami.png',
+        description: 'Managing branch finance, allocations, and event budget coordination.'
+      },
+      {
         name: 'Ved Sakarkar',
-        role: 'WebMaster',
-        photo: '/teamcse/Ved Sakarkar.jpeg',
+        role: 'CS Webmaster',
+        photo: '/team/cs/ved_sakarkar.png',
         description: 'Focused on building responsive, engaging, and reliable web experiences.'
       }
-      ,
+    ]
+  },
+  {
+    id: 'ch-cis',
+    name: 'Computer Intelligence Society',
+    code: 'CIS',
+    tagline: 'Innovate • Intelligent • Impact',
+    description: 'Empowering students to innovate in artificial intelligence, neural computing, deep learning, agentic pipelines, and machine intelligence paradigms.',
+    vision: 'To establish NMIET as a center of innovation in computational intelligence, intelligent agent systems, and ethical AI applications.',
+    mission: 'To bridge academic foundations with modern industry breakthroughs through hands-on model training, neural architectures, and intelligent solutions.',
+    objectives: [
+      'Conduct workshops on deep learning frameworks, PyTorch, and neural computation.',
+      'Build hands-on pipelines for LLMs, Retrieval-Augmented Generation (RAG), and agents.',
+      'Organize AI hackathons to solve complex domain-specific challenges.',
+      'Analyze ethics, interpretability, and societal impacts of autonomous AI systems.'
+    ],
+    images: [
+      '/chapters/cis_poster.png'
+    ],
+    leaders: [
       {
-        name: 'Parikshit Bakal',
-        role: 'Member',
-        photo: '/teamcse/Parikshit Bakal.jpeg',
-        description: 'Contributing through teamwork, creativity, and helping turn ideas into meaningful results.'
+        name: 'Parth Muley',
+        role: 'CIS Chair',
+        photo: '/team/cis/parth_muley.png',
+        description: 'Leading computational intelligence research, agentic pipelines, and chapter growth.'
+      },
+      {
+        name: 'Khushi Upadhyay',
+        role: 'CIS Vice Chair',
+        photo: '/team/cis/khushi_upadhyay.png',
+        description: 'Driving AI initiatives, student workshops, and technical development.'
+      },
+      {
+        name: 'Sanskruti Shedge',
+        role: 'CIS Secretary',
+        photo: '/team/cis/sanskruti_shedge.png',
+        description: 'Managing chapter communications, operations, and organizational coordination.'
+      },
+      {
+        name: 'Prem Swami',
+        role: 'CIS Treasurer',
+        photo: '/team/cis/prem_swami.png',
+        description: 'Overseeing financial planning, allocations, and event execution.'
+      },
+      {
+        name: 'Vaishnavi Sargar',
+        role: 'CIS Webmaster',
+        photo: '/team/cis/vaishnavi_sargar.png',
+        description: 'Developing digital platforms, interactive interfaces, and chapter web assets.'
+      },
+      {
+        name: 'Atharva Sharma',
+        role: 'CIS Team Member',
+        photo: '/team/cis/atharva_sharma.png',
+        description: 'Contributing to machine learning projects, datathons, and workshop support.'
       }
     ]
   },
   {
-    id: 'ch-csea',
-    name: 'Computer Science & Engineering (AI)',
-    code: 'CSE AI',
-    description: 'Focusing on artificial intelligence, neural networks, and prompt engineering, training students to pioneer next-generation autonomous systems.',
-    vision: 'To establish NMIET as a hub of excellence for artificial intelligence training and ethical machine learning applications.',
-    mission: 'To bridge academic curricula with active industry developments in AI/ML through hands-on model training, deployment, and optimization.',
+    id: 'ch-ras',
+    name: 'Robotics & Automation Society',
+    code: 'RAS',
+    tagline: 'Innovate • Intelligent • Impact',
+    description: 'Fostering practical expertise in autonomous robotics, embedded microcontrollers, ROS architectures, sensor integration, and intelligent cyber-physical systems.',
+    vision: 'To build a robust ecosystem for autonomous robotics development, embedded engineering, and automated cyber-physical systems.',
+    mission: 'To provide experiential tinkering labs in robotics, ROS simulation, Arduino/Raspberry Pi prototyping, and automated controls.',
     objectives: [
-      'Run crash courses on PyTorch, TensorFlow, and deep learning architectures.',
-      'Demonstrate local execution of large language models and prompt setups.',
-      'Analyze the societal impacts and ethics of AI and agentic systems.',
-      'Collaborate on practical computer vision and NLP college applications.'
+      'Conduct hardware workshops on microcontrollers, sensor interfacing, and actuator drives.',
+      'Explore ROS (Robot Operating System), SLAM algorithms, and autonomous navigation.',
+      'Organize robotics competitions and line-follower/obstacle-avoidance challenges.',
+      'Prepare students for careers in industrial automation, robotics, and cybernetics.'
     ],
     images: [
-      'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1503676260728-1d2f0b8f3f3d?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=900&q=80'
+      '/chapters/ras_poster.png'
     ],
     leaders: [
       {
-        name: 'Rohan Deshmukh',
-        role: 'Chapter Chair',
-        photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Final Year CSE AI student working on autonomous agent pipelines and deep reinforcement learning.'
+        name: 'Mokshada Naphade',
+        role: 'RAS Chair',
+        photo: '/team/ras/mokshada_naphade.png',
+        description: 'Directing robotics initiatives, automation research, and chapter projects.'
       },
       {
-        name: 'Mayur Tayade',
-        role: 'Technical Lead',
-        photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Third-year CSE AI enthusiast focused on Natural Language Processing (NLP) and fine-tuning foundations.'
+        name: 'Shrikant More',
+        role: 'RAS Vice Chair',
+        photo: '/team/ras/shrikant_more.png',
+        description: 'Guiding hardware implementations, mechanical prototyping, and design.'
+      },
+      {
+        name: 'Aarya Deshmukh',
+        role: 'RAS Secretary',
+        photo: '/team/ras/aarya_deshmukh.png',
+        description: 'Facilitating smooth chapter administration, documentation, and coordination.'
+      },
+      {
+        name: 'Purva Yadav',
+        role: 'RAS Treasurer',
+        photo: '/team/ras/purva_yadav.png',
+        description: 'Managing chapter finances, components inventory, and event budgeting.'
+      },
+      {
+        name: 'Abhirop Mandal',
+        role: 'RAS Webmaster',
+        photo: '/team/ras/abhirop_mandal.png',
+        description: 'Building interactive chapter portals and digital project portfolios.'
+      },
+      {
+        name: 'Shruti Sonar',
+        role: 'RAS Team Member',
+        photo: '/team/ras/shruti_sonar.png',
+        description: 'Actively designing embedded circuits and microcontroller prototypes.'
+      },
+      {
+        name: 'Anushka Bansode',
+        role: 'RAS Team Member',
+        photo: '/team/ras/anushka_bansode.png',
+        description: 'Contributing to autonomous controls, sensor integration, and team projects.'
       }
     ]
   },
   {
-    id: 'ch-aids',
-    name: 'System Man and Cybernetic Society (',
-    code: 'AIDS',
-    description: 'Empowering students with data engineering, database design, statistical models, and advanced machine learning skills.',
-    vision: 'To empower students to become skilled data engineers and analytical experts who can extract insights from unstructured big data.',
-    mission: 'To cultivate technical capabilities in predictive modeling, statistical testing, vector representations, and data visualization tools.',
+    id: 'ch-sps',
+    name: 'Signal Processing Society',
+    code: 'SPS',
+    tagline: 'Innovate • Intelligent • Impact',
+    description: 'Advancing the theory and application of digital signal, speech, audio, image, and biomedical signal processing along with communication technologies.',
+    vision: 'To cultivate skilled engineers in digital signal processing, multimedia communications, biomedical data extraction, and real-time DSP systems.',
+    mission: 'To deliver hands-on training in DSP algorithms, filter synthesis, transformation techniques, and next-gen communication protocols.',
     objectives: [
-      'Train students in advanced SQL, NoSQL databases, and vector storage engines.',
-      'Practice data preparation, exploratory data analysis, and predictive workflows.',
-      'Organize Datathons to solve analytics problems for public/social datasets.',
-      'Explain practical business intelligence and analytics dashboards.'
+      'Instruct on DSP algorithms, MATLAB/Python signal toolboxes, and digital filters.',
+      'Conduct workshops on speech synthesis, audio processing, and biomedical signals.',
+      'Explore computer vision transformations, FFT algorithms, and signal restoration.',
+      'Support students in developing real-time embedded DSP applications.'
     ],
     images: [
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80'
-    ],
-    leaders: [
-  {
-    name: 'Lisha Talale',
-    role: 'SMC Chair',
-    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80',
-    description: 'SMC Chair of the System Man and Cybernetic Society.'
-  },
-  
-
-    ]
-  },
-  {
-    id: 'ch-it',
-    name: 'Information Technology',
-    code: 'IT',
-    description: 'Engaging with web development, enterprise systems, system administration, cybersecurity, and DevOps workflows.',
-    vision: 'To shape future IT professionals skilled in modern secure system management, DevOps operations, and cloud solutions.',
-    mission: 'To offer training on automated deployment, cloud configuration (AWS/Azure), containerization, and enterprise security tools.',
-    objectives: [
-      'Instruct on Linux systems administration, Docker container setups, and shell scripting.',
-      'Run workshops on continuous integration/continuous deployment (CI/CD) practices.',
-      'Promote secure design coding paradigms and defense-in-depth principles.',
-      'Support students in building production-ready scalable web architectures.'
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1517430816045-df4b8defddb0?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1558494949cc5c3f1c1b8b3b7a?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=900&q=80'
+      '/chapters/sps_poster.png'
     ],
     leaders: [
       {
-        name: 'Vikram Singh',
-        role: 'Chapter Chair',
-        photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Final Year IT student. Devops practitioner experienced with AWS, Docker, Kubernetes, and Terraform.'
+        name: 'Praharsh Patil',
+        role: 'SPS Chair',
+        photo: '/team/sps/praharsh_patil.png',
+        description: 'Leading DSP research, technical workshops, and chapter activities.'
       },
       {
-        name: 'Neha Kulkarni',
-        role: 'Vice Chair',
-        photo: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Pre-final Year IT student focused on cybersecurity, penetration testing, and secure system configurations.'
+        name: 'Manas Patil',
+        role: 'SPS Vice-Chair',
+        photo: '/team/sps/manas_patil.png',
+        description: 'Coordinating signal analysis projects and hands-on laboratory sessions.'
+      },
+      {
+        name: 'Chaitali Divekar',
+        role: 'SPS Secretary',
+        photo: '/team/sps/chaitali_divekar.png',
+        description: 'Managing branch documentation, event logistics, and member relations.'
+      },
+      {
+        name: 'Tejaswini Patil',
+        role: 'SPS Treasurer',
+        photo: '/team/sps/tejaswini_patil.png',
+        description: 'Handling financial administration and chapter event budgeting.'
+      },
+      {
+        name: 'Sakshi Babar',
+        role: 'SPS Webmaster',
+        photo: '/team/sps/sakshi_babar.png',
+        description: 'Designing web assets, digital presence, and technical showcase pages.'
+      },
+      {
+        name: 'Sandyarani bukke',
+        role: 'SPS Team Member',
+        photo: '/team/sps/sandyarani_bukke.png',
+        description: 'Engaging in multimedia signal processing and filter design research.'
       }
     ]
   },
   {
-    id: 'ch-ce',
-    name: 'Computer Engineering',
-    code: 'CE',
-    description: 'Combining hardware architecture and software systems. Exploring IoT, embedded controllers, and hardware-software integration.',
-    vision: 'To build a strong base for cyber-physical systems development, IoT designs, and hardware-software collaborative architectures.',
-    mission: 'To provide experiential lab opportunities in robotics, Arduino/Raspberry Pi programming, and low-level firmware development.',
+    id: 'ch-smc',
+    name: 'System Man and Cybernetic Society',
+    code: 'SMC',
+    tagline: 'Innovate • Intelligent • Impact',
+    description: 'Pioneering systems science, cybernetics, human-machine systems, computational cybernetics, and complex adaptive system architectures.',
+    vision: 'To develop analytical expertise in complex systems design, human-machine interactions, and intelligent cybernetic feedback systems.',
+    mission: 'To provide experiential learning in systems engineering, human-in-the-loop systems, cybernetic modeling, and predictive analytics.',
     objectives: [
-      'Conduct hardware tinkering sessions, circuit assembly, and micro-controller coding.',
-      'Design IoT systems that sense environmental parameters and actuate responses.',
-      'Explore firmware engineering, RTOS operations, and hardware debugging tools.',
-      'Prepare students for embedded developer careers in telecomm and automation.'
+      'Train students in systems science, feedback control, and cybernetic architectures.',
+      'Explore human-machine interfaces, assistive technologies, and usability engineering.',
+      'Organize datathons and systems simulation challenges on complex datasets.',
+      'Bridge hardware-software systems with cognitive and cybernetic computing.'
     ],
     images: [
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=900&q=80'
+      '/chapters/smc_poster.png'
     ],
     leaders: [
       {
-        name: 'Aditya Gupta',
-        role: 'Chapter Chair',
-        photo: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Final Year Computer Engineering student. Built smart agricultural monitoring systems using ESP32.'
+        name: 'Lisha Talale',
+        role: 'SMC Chair',
+        photo: '/team/smc/lisha_talale.png',
+        description: 'Leading systems science initiatives, human-machine systems, and chapter strategy.'
       },
       {
-        name: 'Tanvi Deshpande',
-        role: 'Technical Lead',
-        photo: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Third-year CE student interested in firmware, embedded systems, and robotics controls.'
+        name: 'Yash Madane',
+        role: 'SMC Vice-Chair',
+        photo: '/team/smc/yash_madane.png',
+        description: 'Assisting in chapter coordination and cybernetic project development.'
+      },
+      {
+        name: 'Mansi Khairnar',
+        role: 'SMC Secretary',
+        photo: '/team/smc/mansi_khairnar.png',
+        description: 'Overseeing chapter operations, event planning, and records.'
+      },
+      {
+        name: 'Pratik Sonawane',
+        role: 'SMC Treasurer',
+        photo: '/team/smc/pratik_sonawane.png',
+        description: 'Directing chapter budgeting, funds allocation, and accounts.'
+      },
+      {
+        name: 'Shubham Aher',
+        role: 'SMC Webmaster',
+        photo: '/team/smc/shubham_aher.png',
+        description: 'Building web experiences and digital interfaces for SMC.'
+      },
+      {
+        name: 'Shrutika Patil',
+        role: 'SMC Team Member',
+        photo: '/team/smc/shrutika_patil.png',
+        description: 'Contributing to cybernetic systems research and collaborative projects.'
       }
     ]
   }
@@ -359,61 +503,305 @@ export const chaptersData: Chapter[] = [
 
 export const mainTeamData: MainLeader[] = [
   {
-    name: 'Dr. Rajesh Patil',
+    name: 'Dr. Seema Mahalungkar',
     role: 'IEEE Branch Counselor',
-    photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80',
-    department: 'Computer Science Department',
+    photo: '/teams/execom/dr_seema_mahalungkar.png',
+    department: 'Branch Counselor & Faculty Advisor',
     linkedin: 'https://linkedin.com',
-    email: 'rajesh.patil@nmiet.edu.in'
+    email: 'seema.mahalungkar@nmiet.edu.in'
+  },
+  {
+    name: 'Parth Muley',
+    role: 'Student Branch Chair',
+    photo: '/teams/execom/parth_muley.png',
+    department: 'Branch Chairperson',
+    linkedin: 'https://linkedin.com'
+  },
+  {
+    name: 'Mayur Tayade',
+    role: 'Student Branch Webmaster',
+    photo: '/teams/execom/mayur_tayade.png',
+    department: 'Branch Webmaster',
+    linkedin: 'https://linkedin.com'
   },
   {
     name: 'Om Rathod',
-    role: 'Student Branch Chairperson',
-    photo: '/teamcse/omrathod.jpeg',
-    department: 'Computer Science & Engineering',
+    role: 'Student Branch Vice-Chair',
+    photo: '/teams/execom/om_rathod.png',
+    department: 'Branch Vice Chairperson',
     linkedin: 'https://www.linkedin.com/in/omr3106/'
   },
   {
-    name: 'Shreya Kadam',
-    role: 'Student Branch Vice Chairperson',
-    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&h=400&q=80',
-    department: 'Information Technology',
+    name: 'Mokshada Naphade',
+    role: 'Student Branch Secretary',
+    photo: '/teams/execom/mokshada_naphade.png',
+    department: 'Branch Secretary',
     linkedin: 'https://linkedin.com'
   },
   {
-    name: 'Rahul Mehta',
-    role: 'Secretary',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80',
-    department: 'Artificial Intelligence & Data Science',
-    linkedin: 'https://linkedin.com'
-  },
-  {
-    name: 'Yash Vardhan',
-    role: 'Technical Head',
-    photo: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=400&h=400&q=80',
-    department: 'Computer Science & Engineering (AI)',
-    linkedin: 'https://linkedin.com'
-  },
-  {
-    name: 'Megha Deshmukh',
-    role: 'Event Head',
-    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&q=80',
-    department: 'Computer Engineering',
-    linkedin: 'https://linkedin.com'
-  },
-  {
-    name: 'Karan Shah',
-    role: 'Public Relations Head',
-    photo: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&h=400&q=80',
-    department: 'Information Technology',
+    name: 'Atharva Sharma',
+    role: 'Student Branch Treasurer',
+    photo: '/teams/execom/atharva_sharma.png',
+    department: 'Branch Treasurer',
     linkedin: 'https://linkedin.com'
   }
 ];
 
+export const functionalTeamsData: FunctionalTeam[] = [
+  {
+    id: 'team-social',
+    name: 'Social Media Team',
+    tagline: 'Innovate • Collaborate • Impact',
+    description: 'The creative voice and visual storyteller of IEEE NMIET, handling digital branding, content creation, social campaigns, event promotions, and community outreach across Instagram, LinkedIn, and online portals.',
+    responsibilities: [
+      'Create compelling digital content, promotional graphics, and video reels for branch activities.',
+      'Manage official IEEE NMIET social media handles and drive student engagement.',
+      'Provide live coverage, photography, and highlights during hackathons and workshops.',
+      'Promote IEEE global technical initiatives, student benefits, and branch milestones.'
+    ],
+    lead: {
+      name: 'Shruti Sonar',
+      role: 'Social Media Lead',
+      photo: '/teams/social/shruti_sonar.png',
+      description: 'Directing digital content strategy, branding, and social engagement across platforms.'
+    },
+    members: [
+      {
+        name: 'Neha Ghodke',
+        role: 'Team Member',
+        photo: '/teams/social/neha_ghodke.png',
+        description: 'Contributing to creative graphics, posters, and visual branding.'
+      },
+      {
+        name: 'Chaitali Divekar',
+        role: 'Team Member',
+        photo: '/teams/social/chaitali_divekar.png',
+        description: 'Managing content calendars, copywriting, and event announcements.'
+      },
+      {
+        name: 'Tejaswini Patil',
+        role: 'Team Member',
+        photo: '/teams/social/tejaswini_patil.png',
+        description: 'Creating video content, reels, and multimedia promotional assets.'
+      },
+      {
+        name: 'Shravani Nangare',
+        role: 'Team Member',
+        photo: '/teams/social/shravani_nangare.png',
+        description: 'Assisting in audience engagement, community queries, and storytelling.'
+      },
+      {
+        name: 'Yogesh Gate',
+        role: 'Team Member',
+        photo: '/teams/social/yogesh_gate.png',
+        description: 'Supporting photography, live event documentation, and visual layouts.'
+      },
+      {
+        name: 'Pratiksha Kokane',
+        role: 'Team Member',
+        photo: '/teams/social/pratiksha_kokane.png',
+        description: 'Crafting engaging social media posts and event promotional campaigns.'
+      }
+    ]
+  },
+  {
+    id: 'team-tech',
+    name: 'Tech Team',
+    tagline: 'Innovate • Investigate • Impact',
+    description: 'The technical backbone of IEEE NMIET, architecting digital platforms, building web applications, maintaining server infrastructure, and powering coding hackathons and branch systems.',
+    responsibilities: [
+      'Design, build, and maintain official IEEE NMIET web platforms and applications.',
+      'Deploy automated registration portals, scoring dashboards, and hackathon platforms.',
+      'Manage cloud hosting, databases, domain infrastructure, and CI/CD pipelines.',
+      'Conduct technical mentoring and internal coding masterclasses for branch members.'
+    ],
+    lead: {
+      name: 'Mayur Tayade',
+      role: 'Tech Lead',
+      photo: '/teams/tech/mayur_tayade.png',
+      description: 'Leading web architecture, full-stack development, and digital infrastructure.'
+    },
+    members: [
+      {
+        name: 'Shubham Aher',
+        role: 'Tech Member',
+        photo: '/teams/tech/shubham_aher.png',
+        description: 'Focused on frontend development, UI/UX implementation, and responsive design.'
+      },
+      {
+        name: 'Yogesh Gate',
+        role: 'Tech Member',
+        photo: '/teams/tech/yogesh_gate.png',
+        description: 'Working on backend APIs, database integration, and performance optimization.'
+      },
+      {
+        name: 'Yash Madane',
+        role: 'Tech Member',
+        photo: '/teams/tech/yash_madane.png',
+        description: 'Building interactive web components, client applications, and bug testing.'
+      },
+      {
+        name: 'Abhishek Shelar',
+        role: 'Tech Member',
+        photo: '/teams/tech/abhishek_shelar.png',
+        description: 'Contributing to software testing, version control workflows, and tooling.'
+      },
+      {
+        name: 'Sujal Khot',
+        role: 'Technical Co-ordinator',
+        photo: '/teams/tech/sujal_khot.png',
+        description: 'Coordinating technical tasks, sprint planning, and infrastructure support.'
+      }
+    ]
+  },
+  {
+    id: 'team-research',
+    name: 'Research Team',
+    tagline: 'Innovate • Collaborate • Impact',
+    description: 'Fostering a culture of academic rigor, technical research, and intellectual innovation, guiding students in publishing papers, filing patents, and contributing to IEEE conferences and journals.',
+    responsibilities: [
+      'Mentor students in academic paper writing, literature review, and IEEE formatting.',
+      'Guide research projects in AI, IoT, cybersecurity, signal processing, and robotics.',
+      'Coordinate student paper submissions to regional and national IEEE conferences.',
+      'Organize technical research symposiums and expert journal discussion sessions.'
+    ],
+    lead: {
+      name: 'Om Rathod',
+      role: 'Research Lead',
+      photo: '/teams/research/om_rathod.png',
+      description: 'Leading research initiatives, conference submissions, and paper publication mentorship.'
+    },
+    members: [
+      {
+        name: 'Anuj Patil',
+        role: 'Research Member',
+        photo: '/teams/research/anuj_patil.png',
+        description: 'Investigating emerging software paradigms and data science methodologies.'
+      },
+      {
+        name: 'Anushka Bansode',
+        role: 'Research Member',
+        photo: '/teams/research/anushka_bansode.png',
+        description: 'Conducting literature surveys and research in embedded & autonomous systems.'
+      },
+      {
+        name: 'Anushka Singh',
+        role: 'Research Member',
+        photo: '/teams/research/anushka_singh.png',
+        description: 'Assisting in technical documentation, data analysis, and academic writing.'
+      },
+      {
+        name: 'Dhruva Jangam',
+        role: 'Research Member',
+        photo: '/teams/research/dhruva_jangam.png',
+        description: 'Exploring intelligent computation architectures and experimental modeling.'
+      },
+      {
+        name: 'Yash Jadhav',
+        role: 'Research Member',
+        photo: '/teams/research/yash_jadhav.png',
+        description: 'Contributing to algorithmic benchmarking and research project prototypes.'
+      }
+    ]
+  },
+  {
+    id: 'team-events',
+    name: 'Event Organisation & Management Team',
+    tagline: 'Plan • Coordinate • Execute • Create Impact',
+    description: 'The dynamic operational force orchestrating all IEEE NMIET events, workshops, national hackathons, expert seminars, and student orientation drives from inception to flawless execution.',
+    responsibilities: [
+      'Plan end-to-end schedules, venues, audio-visual setups, and event logistics.',
+      'Manage attendee registrations, volunteer delegations, and hospitality services.',
+      'Coordinate guest speakers, industry experts, judges, and dignitaries.',
+      'Ensure smooth execution, crowd management, and certificate distribution.'
+    ],
+    lead: {
+      name: 'Atharva Sharma',
+      role: 'Event Lead',
+      photo: '/teams/events/atharva_sharma.png',
+      description: 'Directing event operations, stage management, and volunteer coordination.'
+    },
+    members: [
+      {
+        name: 'Ved Sakarkar',
+        role: 'Team Member',
+        photo: '/teams/events/ved_sakarkar.png',
+        description: 'Managing technical logistics, venue setups, and coordination.'
+      },
+      {
+        name: 'Lokesh Pawar',
+        role: 'Team Member',
+        photo: '/teams/events/lokesh_pawar.png',
+        description: 'Handling participant desks, registration flow, and on-ground logistics.'
+      },
+      {
+        name: 'Sarthak Ghogare',
+        role: 'Team Member',
+        photo: '/teams/events/sarthak_ghogare.png',
+        description: 'Assisting in venue setup, stage arrangements, and equipment coordination.'
+      },
+      {
+        name: 'Gaurav Salunke',
+        role: 'Team Member',
+        photo: '/teams/events/gaurav_salunke.png',
+        description: 'Supporting volunteer operations, attendee assistance, and scheduling.'
+      },
+      {
+        name: 'Tanmay Agre',
+        role: 'Team Member',
+        photo: '/teams/events/tanmay_agre.png',
+        description: 'Coordinating workshop materials, seating, and participant support.'
+      },
+      {
+        name: 'Khushi Upadhayay',
+        role: 'Team Member',
+        photo: '/teams/events/khushi_upadhayay.png',
+        description: 'Managing hospitality, guest reception, and dignitary coordination.'
+      },
+      {
+        name: 'Ishwari Nerkar',
+        role: 'Team Member',
+        photo: '/teams/events/ishwari_nerkar.png',
+        description: 'Overseeing certificates, felicitation arrangements, and attendee relations.'
+      },
+      {
+        name: 'Parikshit Bakal',
+        role: 'Team Member',
+        photo: '/teams/events/parikshit_bakal.png',
+        description: 'Directing on-stage flow, audio-visual coordination, and timing.'
+      },
+      {
+        name: 'Sanskriti Shedge',
+        role: 'Team Member',
+        photo: '/teams/events/sanskriti_shedge.png',
+        description: 'Managing event announcements, communications, and scheduling.'
+      },
+      {
+        name: 'Manas Patil',
+        role: 'Team Member',
+        photo: '/teams/events/manas_patil.png',
+        description: 'Supporting participant crowd management and event flow.'
+      },
+      {
+        name: 'Praharsh Patil',
+        role: 'Team Member',
+        photo: '/teams/events/praharsh_patil.png',
+        description: 'Assisting in competition rounds, evaluation desks, and scoring setups.'
+      },
+      {
+        name: 'Pratik Sonawane',
+        role: 'Team Member',
+        photo: '/teams/events/pratik_sonawane.png',
+        description: 'Handling resources, budgeting allocations, and procurement for events.'
+      }
+    ]
+  }
+];
+
 export const contactDetails: ContactInfo = {
-  ieeeLead: 'Dr. Rajesh Patil (IEEE Branch Counselor, NMIET)',
+  ieeeLead: 'Dr. Seema Mahalungkar (IEEE Branch Counselor, NMIET)',
   collegeEmail: 'ieee@nmiet.edu.in',
-  phone: '+91 20 2765 4321',
+  phone: '+91 99750 22999',
   address: 'IEEE Student Branch NMIET, Nutan Maharashtra Institute of Engineering and Technology, Talegaon Dabhade, Pune, Maharashtra 410507, India',
   linkedin: 'https://www.linkedin.com/in/ieee-nmiet-student-branch-b35911421?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   instagram: 'https://www.instagram.com/ieee.nmiet?igsh=MXZ0cThqbjB4c2kwZg=='

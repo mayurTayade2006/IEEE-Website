@@ -21,36 +21,53 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    let ticking = false;
 
-      // Detect active section
-      const scrollPosition = window.scrollY + 100;
-      for (const item of navItems) {
-        const el = document.getElementById(item.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(item.id);
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+
+          // Detect active section
+          const scrollPosition = window.scrollY + 120;
+          for (const item of navItems) {
+            const el = document.getElementById(item.id);
+            if (el) {
+              const top = el.offsetTop;
+              const height = el.offsetHeight;
+              if (scrollPosition >= top && scrollPosition < top + height) {
+                setActiveSection(item.id);
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleLinkClick = (id: string) => {
     setIsMobileMenuOpen(false);
+    document.body.style.overflow = '';
     onNavigate(id);
     setActiveSection(id);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => {
+      const next = !prev;
+      document.body.style.overflow = next ? 'hidden' : '';
+      return next;
+    });
+  };
+
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-[120] transition-all duration-500 ${
         isScrolled
           ? 'bg-dark-bg/80 backdrop-blur-md border-b border-white/5 py-4 shadow-lg'
           : 'bg-transparent py-6'
@@ -106,8 +123,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors cursor-pointer"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle Navigation Menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -115,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed top-[72px] right-0 bottom-0 left-0 w-full bg-dark-bg/95 backdrop-blur-lg border-t border-white/5 z-40 transition-all duration-500 lg:hidden ${
+        className={`fixed top-[72px] right-0 bottom-0 left-0 w-full bg-dark-bg/95 backdrop-blur-lg border-t border-white/5 z-[130] transition-all duration-500 lg:hidden ${
           isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
       >

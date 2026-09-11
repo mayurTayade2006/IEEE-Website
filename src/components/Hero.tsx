@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// No lucide icons needed in Hero anymore
+import CyberPlexusCanvas from './CyberPlexusCanvas';
 
 interface HeroProps {
   onNavigate: (sectionId: string) => void;
@@ -10,89 +10,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
     <section
       id="home"
-      className="min-h-screen relative flex items-center justify-center pt-24 pb-16 overflow-hidden bg-grid-pattern"
+      className="min-h-screen relative flex items-center justify-center pt-24 pb-16 overflow-hidden"
     >
-      {/* Background glow orbs */}
-      <div className="glow-orb glow-blue w-[500px] h-[500px] -top-40 -left-40" />
-      <div className="glow-orb glow-cyan w-[400px] h-[400px] bottom-10 -right-20" />
-
-      {/* Dynamic Floating Crystal Wave Background (Independent Crystals) */}
-      {(() => {
-        const crystals = [
-          // Left side cluster (behind text)
-          { id: 1, src: '/bg-cubes-1.png', size: 130, top: '15%', left: '5%', duration: 14, delay: 0, xRange: [0, 15, 0], yRange: [0, -25, 0], rotRange: [0, 180, 360] },
-          { id: 2, src: '/bg-cubes-1.png', size: 90, top: '35%', left: '12%', duration: 18, delay: 1, xRange: [0, -12, 0], yRange: [0, 20, 0], rotRange: [0, -180, -360] },
-          { id: 3, src: '/bg-cubes-1.png', size: 100, top: '20%', left: '22%', duration: 16, delay: 2, xRange: [0, 20, 0], yRange: [0, -15, 0], rotRange: [0, 360] },
-          { id: 4, src: '/bg-cubes-1.png', size: 80, top: '55%', left: '8%', duration: 22, delay: 0.5, xRange: [0, -15, 0], yRange: [0, -30, 0], rotRange: [0, 180] },
-          { id: 5, src: '/bg-cubes-1.png', size: 95, top: '65%', left: '18%', duration: 17, delay: 1.5, xRange: [0, 10, 0], yRange: [0, 20, 0], rotRange: [0, -360] },
-
-          // Bridge wave (flowing toward the logo)
-          { id: 6, src: '/bg-cubes-1.png', size: 110, top: '40%', left: '32%', duration: 15, delay: 0.8, xRange: [0, 25, 0], yRange: [0, -25, 0], rotRange: [0, 180, 360] },
-          { id: 7, src: '/bg-cubes-1.png', size: 90, top: '22%', left: '42%', duration: 20, delay: 2.2, xRange: [0, -15, 0], yRange: [0, 15, 0], rotRange: [0, -180] },
-          { id: 8, src: '/bg-cubes-1.png', size: 100, top: '60%', left: '38%', duration: 16, delay: 1.2, xRange: [0, 15, 0], yRange: [0, -20, 0], rotRange: [0, 360] },
-
-          // Right side cluster (around the logo)
-          { id: 9, src: '/bg-cubes-1.png', size: 140, top: '8%', right: '15%', duration: 18, delay: 0.3, xRange: [0, 20, 0], yRange: [0, -30, 0], rotRange: [0, 360] },
-          { id: 10, src: '/bg-cubes-1.png', size: 95, top: '25%', right: '5%', duration: 14, delay: 1.7, xRange: [0, -10, 0], yRange: [0, 25, 0], rotRange: [0, -180, -360] },
-          { id: 11, src: '/bg-cubes-1.png', size: 115, top: '50%', right: '22%', duration: 16, delay: 0.5, xRange: [0, -20, 0], yRange: [0, -15, 0], rotRange: [0, 360] },
-          { id: 12, src: '/bg-cubes-1.png', size: 85, top: '68%', right: '10%', duration: 21, delay: 2.5, xRange: [0, 15, 0], yRange: [0, 25, 0], rotRange: [0, -360] },
-          { id: 13, src: '/bg-cubes-1.png', size: 105, top: '75%', right: '26%', duration: 15, delay: 1.1, xRange: [0, -15, 0], yRange: [0, -20, 0], rotRange: [0, 180] },
-          
-          // Accents (Orange glowing cubes to match the branding)
-          { id: 14, src: '/bg-cubes-2.png', size: 90, top: '30%', left: '50%', duration: 24, delay: 3, xRange: [0, 30, 0], yRange: [0, -25, 0], rotRange: [0, 360] },
-          { id: 15, src: '/bg-cubes-2.png', size: 100, top: '78%', left: '10%', duration: 19, delay: 2, xRange: [0, -20, 0], yRange: [0, 15, 0], rotRange: [0, -360] },
-          { id: 16, src: '/bg-cubes-2.png', size: 110, top: '65%', right: '6%', duration: 18, delay: 0.9, xRange: [0, 20, 0], yRange: [0, -20, 0], rotRange: [0, 360] },
-          
-          // Accents (Floating purple discs to tie the color space)
-          { id: 17, src: '/bg-discs-1.png', size: 120, top: '5%', left: '40%', duration: 25, delay: 1.5, xRange: [0, 20, 0], yRange: [0, 10, 0], rotRange: [0, 360] },
-          { id: 18, src: '/bg-discs-2.png', size: 110, top: '50%', left: '18%', duration: 22, delay: 0.2, xRange: [0, -10, 0], yRange: [0, -15, 0], rotRange: [0, -360] }
-        ];
-
-        return crystals.map((c) => (
-          <motion.div
-            key={c.id}
-            animate={{
-              x: c.xRange,
-              y: c.yRange,
-              rotate: c.rotRange
-            }}
-            transition={{
-              duration: c.duration,
-              repeat: Infinity,
-              delay: c.delay,
-              ease: 'easeInOut'
-            }}
-            style={{
-              position: 'absolute',
-              width: c.size,
-              height: c.size,
-              top: c.top,
-              left: c.left,
-              right: c.right,
-              zIndex: 0,
-              pointerEvents: 'none'
-            }}
-            className="opacity-60 blur-[0.5px] hidden md:block"
-          >
-            {c.src.includes('discs') ? (
-              <div className="w-full h-full rounded-full border border-white/20 bg-gradient-to-tr from-white/[0.06] to-ieee-accent/[0.25] backdrop-blur-[3px] shadow-[0_8px_32px_0_rgba(0,181,226,0.15)] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/15 to-transparent opacity-40 pointer-events-none" />
-                <div className="absolute inset-2.5 rounded-full border border-white/10 pointer-events-none" />
-              </div>
-            ) : c.src.includes('cubes-2') ? (
-              <div className="w-full h-full rounded-2xl border border-white/20 bg-gradient-to-tr from-white/[0.06] to-[#FF7F00]/[0.25] backdrop-blur-[3px] shadow-[0_8px_32px_0_rgba(255,127,0,0.15)] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/15 to-transparent opacity-30 pointer-events-none" />
-                <div className="absolute inset-3 rounded-xl border border-[#FF7F00]/20 pointer-events-none" />
-              </div>
-            ) : (
-              <div className="w-full h-full rounded-2xl border border-white/20 bg-gradient-to-br from-white/[0.06] to-ieee-blue/[0.25] backdrop-blur-[3px] shadow-[0_8px_32px_0_rgba(0,98,155,0.15)] relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.04] to-white/8 pointer-events-none" />
-              </div>
-            )}
-          </motion.div>
-        ));
-      })()}
+      {/* 3D Cybernetic Neural Plexus & Network Constellation Canvas */}
+      <CyberPlexusCanvas />
 
       {/* Main Grid Container */}
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
@@ -116,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-display font-extrabold text-white leading-tight tracking-tight mb-4"
+            className="text-5xl md:text-7xl font-display font-extrabold text-white leading-tight tracking-tight mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]"
           >
             IEEE <span className="text-gradient">NMIET</span>
           </motion.h1>
@@ -126,7 +47,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl font-display font-medium text-gray-300 mb-6"
+            className="text-xl md:text-2xl font-display font-medium text-gray-200 mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
           >
             Innovate. Connect. Inspire.
           </motion.h2>
@@ -136,7 +57,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-gray-400 text-base md:text-lg leading-relaxed max-w-xl mb-10"
+            className="text-gray-200 text-base md:text-lg leading-relaxed max-w-xl mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
           >
             We are a student-driven technical community focused on emerging technologies, leadership, and professional growth. We empower students to build real projects, publish research, and connect with global engineering professionals.
           </motion.p>
@@ -146,20 +67,41 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap gap-4 w-full sm:w-auto"
+            className="flex flex-wrap gap-4 w-full sm:w-auto mb-10"
           >
             <button
               onClick={() => onNavigate('about')}
-              className="px-8 py-4 rounded-lg bg-ieee-blue hover:bg-ieee-lightBlue text-white font-semibold transition-all duration-300 shadow-lg shadow-ieee-blue/20 flex-1 sm:flex-none text-center"
+              className="px-8 py-4 rounded-xl bg-gradient-to-r from-ieee-blue via-ieee-lightBlue to-ieee-accent hover:opacity-95 text-white font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(0,181,226,0.3)] hover:shadow-[0_0_35px_rgba(0,181,226,0.5)] flex-1 sm:flex-none text-center cursor-pointer hover:scale-[1.02]"
             >
               Explore IEEE NMIET
             </button>
             <button
               onClick={() => onNavigate('join-us')}
-              className="px-8 py-4 rounded-lg bg-transparent border border-gray-700 hover:border-ieee-accent text-white font-semibold transition-all duration-300 flex-1 sm:flex-none text-center hover:bg-white/5"
+              className="px-8 py-4 rounded-xl bg-white/[0.04] backdrop-blur-md border border-white/15 hover:border-ieee-accent text-white font-semibold transition-all duration-300 flex-1 sm:flex-none text-center hover:bg-white/10 hover:shadow-[0_0_25px_rgba(236,72,153,0.2)] cursor-pointer hover:scale-[1.02]"
             >
-              Join IEEE
+              Join Community
             </button>
+          </motion.div>
+
+          {/* Quick Glassmorphic Feature Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/10 w-full"
+          >
+            <div className="px-3.5 py-1.5 rounded-lg bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-ieee-accent animate-pulse" />
+              <span className="text-xs font-semibold text-gray-300">4 Student Chapters</span>
+            </div>
+            <div className="px-3.5 py-1.5 rounded-lg bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#EC4899]" />
+              <span className="text-xs font-semibold text-gray-300">Active Technical Teams</span>
+            </div>
+            <div className="px-3.5 py-1.5 rounded-lg bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#8B5CF6]" />
+              <span className="text-xs font-semibold text-gray-300">Global IEEE STB99631</span>
+            </div>
           </motion.div>
         </div>
 
