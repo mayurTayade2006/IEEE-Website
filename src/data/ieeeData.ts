@@ -120,30 +120,42 @@ export const galleryAlbums: GalleryAlbum[] = [
     id: 'album-1',
     title: 'Inauguration of IEEE Student Branch',
     images: [
-      { url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80', caption: 'Opening ceremony and welcome address' },
-      { url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80', caption: 'Student branch registration desk and orientation' },
-      { url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80', caption: 'Students engaging in the inaugural session' },
-      { url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80', caption: 'Interaction with faculty and branch leaders' }
+      { url: 'public/gallery/innoguration/inno.jpg', caption: 'Opening ceremony and welcome address' },
+      { url: '/gallery/spm1.JPG', caption: 'Sarswati Pujan' },
+      { url: '/gallery/rangoliie.jpg', caption: 'Rangoli of inaugural session' },
+      { url: '/gallery/regamag1.jpg', caption: 'Student branch registration desk and orientation' },
+      { url: '/gallery/prep2ab.jpg', caption: 'Letters and managing documents in the inaugural session' },
+      { url: '/gallery/Techprepm.jpg', caption: 'Technical and Social media team performing in the inaugural session' },
+      { url: '/gallery/particieee.jpg', caption: 'Students engaging in the inaugural session' },
+      { url: 'public/gallery/innoguration/student enjoy.jpg', caption: 'Students engaging in the inaugural session' },
+      { url: '/gallery/ieeeteam.jpg', caption: 'IEEE Team in the inaugural session' }
     ]
   },
   {
     id: 'album-2',
     title: 'Quantum Computing Workshop',
     images: [
-      { url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80', caption: 'Expert speaker explaining quantum concepts' },
-      { url: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80', caption: 'Students learning practical quantum workflows' },
-      { url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80', caption: 'Hands-on session with modern computing tools' },
-      { url: 'https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&w=800&q=80', caption: 'Interactive Q&A session with attendees' }
+      { url: 'public/gallery/Quantum Session/Quantums.jpg', caption: 'Expert speaker explaining quantum concepts' },
+      { url: 'public/gallery/Quantum Session/image.png', caption: 'Expert speaker explaining quantum concepts' },
+      { url: 'public/gallery/Quantum Session/interaction.jpg', caption: 'Quiz Competation instrctions.' },
+      { url: 'public/gallery/Quantum Session/Quant_Qui1.jpg', caption: 'Quiz Competation in the Quantum session' },
+      { url: 'public/gallery/Quantum Session/QuizS.jpg', caption: 'Students Response and pic' },
+      { url: 'public/gallery/Quantum Session/winnerbes.jpg', caption: 'Quiz winner in the Quantum Quiz' },
     ]
   },
   {
     id: 'album-3',
     title: 'Blood Donation Camp',
     images: [
-      { url: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=800&q=80', caption: 'Volunteers organizing the donation camp setup' },
-      { url: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800&q=80', caption: 'Students giving blood with care and enthusiasm' },
-      { url: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80', caption: 'Medical staff supporting the event smoothly' },
-      { url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=800&q=80', caption: 'Team photo after a successful donation drive' }
+      { url: 'public/gallery/Blood Donation/discussion.jpg', caption: 'Team members and co-coordinators discussing event planning and coordination' },
+      { url: 'public/gallery/Blood Donation/bl inno.jpg', caption: 'Inauguration ceremony officially marking the commencement of the event' },
+      { url: 'public/gallery/Blood Donation/blood don regi desk.jpg', caption: 'Registration desk the donation camp setup' },
+      { url: 'public/gallery/Blood Donation/faculty visit to donor.jpg', caption: 'Visitors interacting and meeting with team and blood donors' },
+      { url: 'public/gallery/Blood Donation/Blood d mam Arr.jpg', caption: 'Management team & Co-ordinator supporting and coordinating the event successfully' },
+      { url: 'public/gallery/Blood Donation/nutrition desk.jpg', caption: 'Nutrition and body wellness consultation services desk' },
+      { url: 'public/gallery/Blood Donation/blcamp.jpg', caption: 'Students giving blood with care and enthusiasm' },
+      { url: 'public/gallery/Blood Donation/eye checkup.jpg', caption: 'Students receiving eye checkups at the medical desk' },
+      { url: 'public/gallery/ieeeteam.jpg', caption: 'Team photo after a successful donation drive' }
     ]
   }
 ];
@@ -153,9 +165,9 @@ export const chaptersData: Chapter[] = [
     id: 'ch-cse',
     name: 'Computer Science and Engineering',
     code: 'CSE',
-    description: 'Explore the IEEE community for Computer Science and Engineering students, focusing on software development, cloud systems, and compiler design.',
+    description: 'Founded in 1946, the IEEE Computer Society is a global community dedicated to advancing computer science and technology. It promotes innovation across computing theory, design, practice, and application through leading publications, international conferences, technical standards, educational initiatives, and professional development programs.',
     vision: 'To build a community of innovative software engineers and researchers capable of addressing global computational challenges.',
-    mission: 'To provide high-quality learning resources, competitive programming bootcamps, and platforms for software development to student members.',
+    mission: 'To advance the theory, practice, and application of computer and information processing science and technology while fostering technical excellence, innovation, and professional growth among its members.',
     objectives: [
       'Conduct hands-on sessions on modern programming languages and frameworks.',
       'Organize competitive coding competitions to boost algorithmic thinking.',
@@ -173,16 +185,29 @@ export const chaptersData: Chapter[] = [
     ],
     leaders: [
       {
-        name: 'Amit Verma',
+        name: 'Om Rathod',
         role: 'Chapter Chair',
-        photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Final Year CSE student specialized in Distributed Systems and Cloud computing. Open-source enthusiast.'
+        photo: '/teamcse/omrathod.jpeg',
+        description: 'Creating leading teams, shaping impactful initiatives, and turning vision into action.'
       },
       {
-        name: 'Priya Sharma',
-        role: 'Technical Lead',
-        photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Pre-final Year CSE student interested in algorithms, operating systems, and full-stack software development.'
+        name: 'Mayur Tayade',
+        role: 'Secretary',
+        photo: '/teamcse/Mayur Tayade.jpeg',
+        description: 'Passionate about turning ideas into organized, impactful initiatives.'
+      },
+      {
+        name: 'Ved Sakarkar',
+        role: 'WebMaster',
+        photo: '/teamcse/Ved Sakarkar.jpeg',
+        description: 'Focused on building responsive, engaging, and reliable web experiences.'
+      }
+      ,
+      {
+        name: 'Parikshit Bakal',
+        role: 'Member',
+        photo: '/teamcse/Parikshit Bakal.jpeg',
+        description: 'Contributing through teamwork, creativity, and helping turn ideas into meaningful results.'
       }
     ]
   },
@@ -216,7 +241,7 @@ export const chaptersData: Chapter[] = [
         description: 'Final Year CSE AI student working on autonomous agent pipelines and deep reinforcement learning.'
       },
       {
-        name: 'Anjali Patil',
+        name: 'Mayur Tayade',
         role: 'Technical Lead',
         photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=400&q=80',
         description: 'Third-year CSE AI enthusiast focused on Natural Language Processing (NLP) and fine-tuning foundations.'
@@ -225,7 +250,7 @@ export const chaptersData: Chapter[] = [
   },
   {
     id: 'ch-aids',
-    name: 'Artificial Intelligence & Data Science',
+    name: 'System Man and Cybernetic Society (',
     code: 'AIDS',
     description: 'Empowering students with data engineering, database design, statistical models, and advanced machine learning skills.',
     vision: 'To empower students to become skilled data engineers and analytical experts who can extract insights from unstructured big data.',
@@ -246,18 +271,14 @@ export const chaptersData: Chapter[] = [
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80'
     ],
     leaders: [
-      {
-        name: 'Siddharth Joshi',
-        role: 'Chapter Chair',
-        photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Final Year AIDS student with double internships in Big Data engineering and pipeline automation.'
-      },
-      {
-        name: 'Sneha Nair',
-        role: 'Event Lead',
-        photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&h=400&q=80',
-        description: 'Pre-final Year student specialized in data visualization, analytics stories, and event planning.'
-      }
+  {
+    name: 'Lisha Talale',
+    role: 'SMC Chair',
+    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80',
+    description: 'SMC Chair of the System Man and Cybernetic Society.'
+  },
+  
+
     ]
   },
   {
@@ -346,11 +367,11 @@ export const mainTeamData: MainLeader[] = [
     email: 'rajesh.patil@nmiet.edu.in'
   },
   {
-    name: 'Aryan Kulkarni',
+    name: 'Om Rathod',
     role: 'Student Branch Chairperson',
-    photo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&h=400&q=80',
+    photo: '/teamcse/omrathod.jpeg',
     department: 'Computer Science & Engineering',
-    linkedin: 'https://linkedin.com'
+    linkedin: 'https://www.linkedin.com/in/omr3106/'
   },
   {
     name: 'Shreya Kadam',

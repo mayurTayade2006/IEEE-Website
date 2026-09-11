@@ -218,7 +218,7 @@ const ChaptersSection: React.FC<ChaptersSectionProps> = ({ activeChapter, setAct
                       <div className="flex items-center gap-3 text-ieee-accent mb-4">
                         <Users className="w-5 h-5" />
                         <h3 className="text-lg font-display font-bold text-white uppercase tracking-wider">
-                          Chapter Leadership
+                          TEAM
                         </h3>
                       </div>
                       
