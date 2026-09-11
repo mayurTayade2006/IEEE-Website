@@ -803,6 +803,6 @@ export const contactDetails: ContactInfo = {
   collegeEmail: 'ieee@nmiet.edu.in',
   phone: '+91 99750 22999',
   address: 'IEEE Student Branch NMIET, Nutan Maharashtra Institute of Engineering and Technology, Talegaon Dabhade, Pune, Maharashtra 410507, India',
-  linkedin: 'https://www.linkedin.com/in/ieee-nmiet-student-branch-b35911421?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+  linkedin: 'https://www.linkedin.com/company/ieee-nmiet/',
   instagram: 'https://www.instagram.com/ieee.nmiet?igsh=MXZ0cThqbjB4c2kwZg=='
 };
